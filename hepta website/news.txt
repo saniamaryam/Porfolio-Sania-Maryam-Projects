@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hepta Blog with Sidebar, Categories, and More Pictures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Reset and base */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #007bff;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 60vh;
+      background: url('News.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem;
+    }
+    .site-title {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    .hamburger-menu {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2.2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .blog-title {
+      font-size: 4rem;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+      text-shadow: 2px 2px 10px #000;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      margin: 0 0 2rem 0;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    /* Main layout wrapper */
+    .main-wrapper {
+      display: flex;
+      justify-content: center;
+      background: #f4f4f4;
+      padding: 2rem 1rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1 1 65%;
+      max-width: 900px;
+      background: #fff;
+      padding: 1rem 2rem 2rem 2rem;
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .blog-card-content {
+      padding: 1rem 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .blog-card-date {
+      font-size: 0.85rem;
+      color: #bbb;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+    .blog-card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #222;
+      margin: 0;
+      font-family: 'Georgia', serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex: 0 1 28%;
+      max-width: 350px;
+      background: #fff;
+      padding: 2rem 1.5rem 2rem 1.5rem;
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      height: fit-content;
+    }
+    .search-box {
+      margin-bottom: 2.5rem;
+      background: #fafafa;
+      border-radius: 4px;
+      padding: 1rem;
+      border: 1px solid #eee;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .search-box input:focus {
+      border-color: #007bff;
+    }
+    .popular-posts, .categories {
+      background: #fafafa;
+      border-radius: 4px;
+      padding: 1rem;
+      border: 1px solid #eee;
+      margin-bottom: 2rem;
+    }
+    .popular-title, .categories-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #222;
+      letter-spacing: 1px;
+    }
+    .popular-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .popular-item:last-child {
+      margin-bottom: 0;
+    }
+    .popular-thumb {
+      width: 60px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 0.8rem;
+      flex-shrink: 0;
+    }
+    .popular-meta {
+      flex: 1;
+    }
+    .popular-date {
+      font-size: 0.75rem;
+      color: #bbb;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .popular-title-link {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #222;
+      font-family: 'Georgia', serif;
+      transition: color 0.2s;
+    }
+    .popular-title-link:hover {
+      color: #007bff;
+    }
+
+    /* Categories List */
+    .categories-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .categories-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0.5rem;
+      border-bottom: 1px solid #ddd;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .categories-list li:last-child {
+      border-bottom: none;
+    }
+    .categories-list li:hover {
+      background-color: #e9f0ff;
+    }
+    .category-name {
+      font-weight: 600;
+      color: #222;
+    }
+    .category-count {
+      color: #555;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 2rem;
+      border-radius: 0 0 8px 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .main-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+      }
+      .content-area, .sidebar {
+        max-width: 100%;
+        flex: 1 1 100%;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+      }
+      footer {
+        border-radius: 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .blog-card img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="overlay">
+      <div class="site-title">Hepta</div>
+      <div class="hamburger-menu">&#9776;</div>
+      <h1 class="blog-title">Blog</h1>
+      <p class="subtitle">A free template by Colorlib. Download and share!</p>
+    </div>
+  </header>
+
+  <!-- Main Content and Sidebar -->
+  <div class="main-wrapper">
+    <section class="content-area">
+      <div class="blog-grid">
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Orange Juice" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-02-26">February 26, 2018</time>
+            <h2 class="blog-card-title">Free Template by Colorlib</h2>
+          </div>
+        </article>
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Paddle Board" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-02-26">February 26, 2018</time>
+            <h2 class="blog-card-title">Free Template by Colorlib</h2>
+          </div>
+        </article>
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Sofa" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-02-26">February 26, 2018</time>
+            <h2 class="blog-card-title">Free Template by Colorlib</h2>
+          </div>
+        </article>
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Beach" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-02-26">February 26, 2018</time>
+            <h2 class="blog-card-title">Free Template by Colorlib</h2>
+          </div>
+        </article>
+        <!-- Two new pictures added below -->
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Mountain View" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-03-01">March 1, 2018</time>
+            <h2 class="blog-card-title">Stunning Mountain Views</h2>
+          </div>
+        </article>
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="City Night Lights" />
+          <div class="blog-card-content">
+            <time class="blog-card-date" datetime="2018-03-02">March 2, 2018</time>
+            <h2 class="blog-card-title">City Night Lights</h2>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="search-box">
+        <input type="search" placeholder="Search..." aria-label="Search blog posts" />
+      </div>
+
+      <div class="popular-posts">
+        <h3 class="popular-title">Popular Post</h3>
+
+        <div class="popular-item">
+          <img class="popular-thumb" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Orange Juice" />
+          <div class="popular-meta">
+            <time class="popular-date" datetime="2018-02-27">February 27, 2018</time>
+            <a href="#" class="popular-title-link">Free Template by Colorlib</a>
+          </div>
+        </div>
+
+        <div class="popular-item">
+          <img class="popular-thumb" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Paddle Board" />
+          <div class="popular-meta">
+            <time class="popular-date" datetime="2018-02-27">February 27, 2018</time>
+            <a href="#" class="popular-title-link">Free Template by Colorlib</a>
+          </div>
+        </div>
+
+        <div class="popular-item">
+          <img class="popular-thumb" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Beach" />
+          <div class="popular-meta">
+            <time class="popular-date" datetime="2018-02-27">February 27, 2018</time>
+            <a href="#" class="popular-title-link">Free Template by Colorlib</a>
+          </div>
+        </div>
+
+        <div class="popular-item">
+          <img class="popular-thumb" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Sofa" />
+          <div class="popular-meta">
+            <time class="popular-date" datetime="2018-02-27">February 27, 2018</time>
+            <a href="#" class="popular-title-link">Free Template by Colorlib</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="categories">
+        <h3 class="categories-title">Categories</h3>
+        <ul class="categories-list">
+          <li><span class="category-name">Events</span> <span class="category-count">(12)</span></li>
+          <li><span class="category-name">Resto bar</span> <span class="category-count">(4)</span></li>
+          <li><span class="category-name">Celebration</span> <span class="category-count">(23)</span></li>
+          <li><span class="category-name">Promos</span> <span class="category-count">(5)</span></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+   <!-- FOOTER SECTION -->
+    <footer style="background: black; padding: 60px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+
+            <!-- Quick Links -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">About us </a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Privicy Policy</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Rooms</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Support</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">Our location</a></li>
+                    <li><a href="#">The hosta</a></li>
+                    <li><a href="#">about</a></li>
+                     <li><a href="#">contect</a></li>
+                    <li><a href="#">ResurantS</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Contact Info</h3>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-map-marker-alt" style="color: #6ecfc7; margin-right: 8px;"></i> 123 Street Name, City, Country</p>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-phone" style="color: #6ecfc7; margin-right: 8px;"></i> +123-456-7890</p>
+                <p style="margin: 0;"><i class="fas fa-envelope" style="color: #6ecfc7; margin-right: 8px;"></i> info@example.com</p>
+            </div>
+
+            <!-- Subscribe -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Subscribe</h3>
+                <p>Get the latest news and updates.</p>
+                <form style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" placeholder="Your Email" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required />
+                    <button type="submit" style="padding: 10px; background: #6ecfc7; color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; font-size: 0.9rem; color: #888;">
+            &copy; 2025 Hepta Hotel. All rights reserved.
+        </div>
+    </footer>
+
+    </section>
+    
+</body>
+</html>
+
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Hepta. All rights reserved.
+  </footer>
+</body>
+</html>

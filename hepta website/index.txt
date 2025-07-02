@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel & Tours | Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+      height: 100%;
+      font-family: 'Playfair Display', serif;
+      background: #f8f8f8;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-top: 50px;
+    }
+
+    .subtitle {
+      color: #7a7a7a;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    .hero {
+      background-image: url('index.jpg.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .hero-content { z-index: 1; }
+    h1.hero-title {
+      font-size: 3em;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+    p.hero-subtitle {
+      font-size: 1.1em;
+      margin: 10px 0 20px;
+    }
+    .btn {
+      text-decoration: none;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 10px;
+      color: white;
+      padding: 10px 25px;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      transition: background 0.3s, color 0.3s;
+      margin-top: 20px;
+    }
+    .btn:hover { background-color: black; color: white; }
+
+    .menu-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .menu-icon div {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin: 5px 0;
+      transition: 0.4s;
+    }
+
+    .logo {
+      position: absolute;
+      top: 45px;
+      left: 90px;
+      z-index: 2;
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .welcome-section {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .welcome-image { flex: 1 1 300px; }
+    .welcome-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .welcome-content {
+      flex: 2 1 400px;
+      text-align: left;
+    }
+    .welcome-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #0056b3;
+      margin-bottom: 15px;
+    }
+    .welcome-content p {
+      line-height: 1.6;
+      margin-bottom: 1em;
+    }
+    .video-wrapper { margin-top: auto; }
+    iframe, video {
+      width: 100%;
+      height: 315px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-section {
+        flex-direction: column;
+      }
+    }
+
+    .blog-container {
+      max-width: 1200px;
+      margin: 0 auto 80px auto;
+      padding: 60px 20px 40px 20px;
+      background: #6ec6c6;
+      color: #222;
+      border-radius: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2em;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #f7f7f7;
+      font-size: 1.25em;
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+    .blog-row {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      max-width: 350px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .blog-card-content {
+      padding: 25px;
+    }
+    .blog-date {
+      color: #bdbdbd;
+      font-size: 0.95em;
+      margin-bottom: 10px;
+    }
+    .blog-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .blog-desc {
+      font-size: 1em;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+    .feature {
+      flex: 1 1 30%;
+      max-width: 300px;
+      padding: 20px;
+      margin: 10px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .feature img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+    .feature h2 {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .feature p {
+      font-size: 0.95em;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .feature {
+        flex: 1 1 80%;
+      }
+    }
+
+    footer {
+      background: black;
+      padding: 60px 20px;
+      color: white;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    footer div ul {
+      list-style: none;
+      padding: 0;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <button class="menu-icon" id="menuBtn" aria-label="Open menu">
+      <div></div><div></div><div></div>
+    </button>
+    <div class="logo">HEPTA</div>
+    <div class="hero-content">
+      <h1 class="hero-title">Travel & Tours</h1>
+      <p class="hero-subtitle">A free template by Colorlib. Download and share!</p>
+      <a href="#" class="btn">Visit Places</a>
+    </div>
+  </div>
+
+  <section class="welcome-section">
+    <div class="welcome-image">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Scenic landscape" />
+    </div>
+    <div class="welcome-content">
+      <h1>Welcome To Our Website</h1>
+      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
+      <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Watch The Video" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-container">
+    <div class="section-title">Recent Blog Post</div>
+    <div class="section-subtitle">
+      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...
+    </div>
+    <div class="blog-row">
+      <!-- Blog Cards (3 Examples) -->
+      <article class="blog-card">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Nature" />
+        <div class="blog-card-content">
+          <time class="blog-date">FEBRUARY 26, 2018</time>
+          <h3 class="blog-title">45 Best Places To Unwind</h3>
+          <p class="blog-desc">Far far away, behind the word mountains...</p>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Adventure" />
+        <div class="blog-card-content">
+          <time class="blog-date">FEBRUARY 26, 2018</time>
+          <h3 class="blog-title">Ocean Adventures</h3>
+          <p class="blog-desc">Explore the beauty of the blue waves and sunny beaches.</p>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/72058162/6c8b726f-b675-444f-b7e4-dfe3ca94c8cd/image.jpg" alt="Travel" />
+        <div class="blog-card-content">
+          <time class="blog-date">FEBRUARY 26, 2018</time>
+          <h3 class="blog-title">Hidden Gems to Visit</h3>
+          <p class="blog-desc">Discover the lesser-known spots that offer incredible views.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <h1>Experience Once In Your Life Time</h1>
+  <p class="subtitle">Far far away, behind the word mountains, far from the countries Vokalia...</p>
+
+  <div class="features">
+    <!-- Feature cards -->
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/restaurant.png" alt="Good Foods">
+      <h2>Good Foods</h2>
+      <p>Enjoy diverse and delicious cuisines across the globe.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/globe.png" alt="Travel Anywhere">
+      <h2>Travel Anywhere</h2>
+      <p>Visit every corner of the world with our custom packages.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/airplane-take-off.png" alt="Airplane">
+      <h2>Airplane</h2>
+      <p>We offer fast and reliable flight booking services.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/beach.png" alt="Beach Resort">
+      <h2>Beach Resort</h2>
+      <p>Relax at the most beautiful beach resorts worldwide.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/mountain.png" alt="Mountain Climbing">
+      <h2>Mountain Climbing</h2>
+      <p>Adventure-filled expeditions to thrilling mountain peaks.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/100/hot-air-balloon.png" alt="Hot Air Balloon">
+      <h2>Hot Air Balloon</h2>
+      <p>Soar above the clouds in scenic hot air balloon rides.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Rooms</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Our Location</a></li>
+          <li><a href="#">The Hosta</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Restaurants</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact Info</h3>
+        <p>📍 123 Street Name, City, Country</p>
+        <p>📞 +123-456-7890</p>
+        <p>📧 contact@example.com</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menuBtn').onclick = function () {
+      window.open('home.html', '_blank');
+    };
+  </script>
+</body>
+</html>
+
+
+
+
+
+

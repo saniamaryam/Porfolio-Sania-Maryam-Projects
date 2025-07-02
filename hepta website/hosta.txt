@@ -1,0 +1,472 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Our Hotel</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Montserrat:400,700" rel="stylesheet" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Reset and base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+        a {
+            color: #6ecfc7;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* HERO SECTION */
+        .hero-section {
+            position: relative;
+            width: 100vw;
+            height: 70vh;
+            min-height: 450px;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.25);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .site-name {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-icon span, .menu-icon span:before, .menu-icon span:after {
+            display: block;
+            background: #fff;
+            height: 4px;
+            width: 32px;
+            border-radius: 2px;
+            position: absolute;
+            content: '';
+            transition: all 0.3s;
+        }
+        .menu-icon span {
+            position: relative;
+        }
+        .menu-icon span:before {
+            top: -10px;
+            position: absolute;
+        }
+        .menu-icon span:after {
+            bottom: -10px;
+            position: absolute;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+        .hero-subtitle {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #f4f4f4;
+            margin-bottom: 0;
+        }
+
+        /* SECTIONS COMMON */
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        h2.section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #222;
+        }
+
+        /* FEATURES SECTION */
+        .features-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px 0;
+        }
+        .feature-box {
+            width: 33.3333%;
+            box-sizing: border-box;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 50px;
+            color: #6ecfc7;
+            margin-bottom: 20px;
+        }
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+        }
+        .feature-desc {
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 320px;
+        }
+
+        /* ROOM SECTIONS */
+        .rooms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        .room-card {
+            width: 45%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        .room-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .room-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .room-content {
+            padding: 20px;
+        }
+        .room-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            color: #222;
+        }
+        .room-desc {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* MORE FEATURES */
+        .more-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px 0;
+            justify-content: center;
+        }
+        .more-feature-box {
+            width: 30%;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+        .more-feature-box:hover {
+            box-shadow: 0 6px 15px rgba(110, 207, 199, 0.4);
+        }
+        .more-feature-icon {
+            font-size: 40px;
+            color: #6ecfc7;
+            margin-bottom: 15px;
+        }
+        .more-feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .more-feature-desc {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .feature-box {
+                width: 50%;
+            }
+            .room-card {
+                width: 100%;
+            }
+            .more-feature-box {
+                width: 45%;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .site-name {
+                font-size: 1.2rem;
+                left: 18px;
+                top: 18px;
+            }
+            .menu-icon {
+                right: 18px;
+                top: 18px;
+            }
+            .feature-box, .more-feature-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="site-name">Hepta</div>
+        <div class="menu-icon">
+            <span></span>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Our Hotel</h1>
+            <p class="hero-subtitle">A free template by <span style="color:#6ecfc7;">Colorlib</span>. Download and share!</p>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section" aria-label="Hotel Features">
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+            <div class="feature-title">Good Foods</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-globe"></i></div>
+            <div class="feature-title">Travel Anywhere</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-plane"></i></div>
+            <div class="feature-title">Airplane</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-umbrella-beach"></i></div>
+            <div class="feature-title">Beach Resort</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-mountain"></i></div>
+            <div class="feature-title">Mountain Climbing</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+        <div class="feature-box">
+            <div class="feature-icon"><i class="fas fa-hot-air-balloon"></i></div>
+            <div class="feature-title">Hot Air Balloon</div>
+            <div class="feature-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+        </div>
+    </section>
+
+    <!-- FAMILY ROOM -->
+    <section aria-label="Family Room">
+        <h2 class="section-title">Family Room</h2>
+        <div class="rooms">
+            <div class="room-card">
+                <img class="room-image" src="https://images.unsplash.com/photo-1560448204-5b9b3f8c3b12?auto=format&fit=crop&w=800&q=80" alt="Family Room Interior" />
+                <div class="room-content">
+                    <h3 class="room-title">Spacious Family Room</h3>
+                    <p class="room-desc">Enjoy a comfortable stay with your loved ones in our spacious family rooms, equipped with modern amenities and cozy furnishings.</p>
+                </div>
+            </div>
+            <div class="room-card">
+                <img class="room-image" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80" alt="Family Room Bed" />
+                <div class="room-content">
+                    <h3 class="room-title">Family Room Comfort</h3>
+                    <p class="room-desc">Relax in a warm and inviting atmosphere with ample space and premium bedding designed for your family’s comfort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESIDENTIAL ROOM -->
+    <section aria-label="Presidential Room">
+        <h2 class="section-title">Presidential Room</h2>
+        <div class="rooms">
+            <div class="room-card">
+                <img class="room-image" src="https://images.unsplash.com/photo-1501183638714-1f0a64c6ad65?auto=format&fit=crop&w=800&q=80" alt="Presidential Room Interior" />
+                <div class="room-content">
+                    <h3 class="room-title">Luxury Presidential Suite</h3>
+                    <p class="room-desc">Experience the ultimate luxury in our presidential suite featuring elegant decor, spacious living areas, and exclusive amenities.</p>
+                </div>
+            </div>
+            <div class="room-card">
+                <img class="room-image" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80" alt="Presidential Room View" />
+                <div class="room-content">
+                    <h3 class="room-title">Exclusive Views & Comfort</h3>
+                    <p class="room-desc">Enjoy breathtaking views and unparalleled comfort in our presidential rooms designed for discerning guests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOTEL GALLERY -->
+    <section aria-label="Hotel Gallery">
+        <h2 class="section-title">Hotel Gallery</h2>
+        <div class="gallery" role="list">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby" role="listitem" />
+            <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=800&q=80" alt="Hotel Pool" role="listitem" />
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hotel Dining" role="listitem" />
+            <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=800&q=80" alt="Hotel Room" role="listitem" />
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hotel Exterior" role="listitem" />
+            <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=800&q=80" alt="Hotel Lounge" role="listitem" />
+        </div>
+    </section>
+
+    <!-- MORE HOTEL FEATURES -->
+    <section aria-label="More Hotel Features">
+        <h2 class="section-title">More Hotel Features</h2>
+        <div class="more-features">
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-spa"></i></div>
+                <div class="more-feature-title">Spa & Wellness</div>
+                <div class="more-feature-desc">Relax and rejuvenate in our full-service spa offering massages, facials, and wellness treatments.</div>
+            </div>
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="more-feature-title">Fitness Center</div>
+                <div class="more-feature-desc">Stay fit during your stay with our state-of-the-art gym facilities and personal trainers.</div>
+            </div>
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-swimmer"></i></div>
+                <div class="more-feature-title">Indoor Pool</div>
+                <div class="more-feature-desc">Enjoy our heated indoor pool, perfect for relaxation and exercise all year round.</div>
+            </div>
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-coffee"></i></div>
+                <div class="more-feature-title">Cafe & Lounge</div>
+                <div class="more-feature-desc">Unwind with specialty coffees and light bites in our cozy cafe and lounge area.</div>
+            </div>
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-concierge-bell"></i></div>
+                <div class="more-feature-title">24/7 Concierge</div>
+                <div class="more-feature-desc">Our concierge team is available around the clock to assist with your needs and requests.</div>
+            </div>
+            <div class="more-feature-box">
+                <div class="more-feature-icon"><i class="fas fa-shuttle-van"></i></div>
+                <div class="more-feature-title">Airport Shuttle</div>
+                <div class="more-feature-desc">Convenient shuttle service to and from the airport for a hassle-free arrival and departure.</div>
+            </div>
+        </div>
+
+
+    </section>
+      <!-- FOOTER SECTION -->
+    <footer style="background: black; padding: 60px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+
+            <!-- Quick Links -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">About us </a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Privicy Policy</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Rooms</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Support</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">Our location</a></li>
+                    <li><a href="#">The hosta</a></li>
+                    <li><a href="#">about</a></li>
+                     <li><a href="#">contect</a></li>
+                    <li><a href="#">ResurantS</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Contact Info</h3>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-map-marker-alt" style="color: #6ecfc7; margin-right: 8px;"></i> 123 Street Name, City, Country</p>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-phone" style="color: #6ecfc7; margin-right: 8px;"></i> +123-456-7890</p>
+                <p style="margin: 0;"><i class="fas fa-envelope" style="color: #6ecfc7; margin-right: 8px;"></i> info@example.com</p>
+            </div>
+
+            <!-- Subscribe -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Subscribe</h3>
+                <p>Get the latest news and updates.</p>
+                <form style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" placeholder="Your Email" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required />
+                    <button type="submit" style="padding: 10px; background: #6ecfc7; color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; font-size: 0.9rem; color: #888;">
+            &copy; 2025 Hepta Hotel. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

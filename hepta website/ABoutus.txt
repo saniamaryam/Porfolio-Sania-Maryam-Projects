@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hepta — About Us & Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+    /* Navigation */
+    .logo {
+      position: absolute;
+      top: 32px;
+      left: 40px;
+      z-index: 10;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .menu-icon {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .menu-icon span {
+      width: 32px;
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      display: block;
+    }
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      min-height: 400px;
+      background: url('Aboutsus.jpg') center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 2px;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin: 0;
+      font-weight: 400;
+    }
+    /* About Section */
+    .about-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+      background: #fff;
+      gap: 48px;
+    }
+    .about-img {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .about-img img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      object-fit: cover;
+    }
+    .about-content {
+      flex: 1;
+      max-width: 520px;
+      padding-left: 32px;
+    }
+    .about-content h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0 0 24px 0;
+      font-family: 'Montserrat', serif;
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 18px;
+    }
+    .about-content .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      font-size: 1rem;
+      color: #222;
+      border: 2px solid #6ec1e4;
+      border-radius: 4px;
+      background: transparent;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .about-content .btn:hover {
+      background: #6ec1e4;
+      color: #fff;
+    }
+    /* Gallery Section */
+    .gallery-section {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 16px;
+      text-align: center;
+    }
+    .gallery-section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #222;
+      font-family: 'Montserrat', serif;
+    }
+    .gallery-description {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 32px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .slideshow-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    .gallery-item:hover {
+      border-color: #6ec1e4;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    @media (max-width: 1100px) {
+      .about-section {
+        flex-direction: column;
+        gap: 32px;
+        padding: 40px 16px;
+      }
+      .about-img, .about-content {
+        max-width: 100%;
+        padding: 0;
+      }
+      .about-img {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 700px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .logo {
+        font-size: 1.3rem;
+        left: 16px;
+        top: 18px;
+      }
+      .menu-icon {
+        right: 16px;
+        top: 20px;
+      }
+      .about-content h2 {
+        font-size: 1.5rem;
+      }
+      .about-content {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation and Hero Section -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="logo">Hepta</div>
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="hero-content">
+      <h1>About Us</h1>
+      <p>A free template by Colorlib. Download and share!</p>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="about-section">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80" alt="Santorini Greece" />
+    </div>
+    <div class="about-content">
+      <h2>Welcome Travel &amp; Tours</h2>
+      <p>
+        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+      </p>
+      <p>
+        A small river named Duden flows by their place and supplies it with the necessary regelialia.
+      </p>
+      <a href="#" class="btn">Learn More</a>
+    </div>
+  </div>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <h2>Gallery</h2>
+    <p class="gallery-description">
+      Hepta is a Mumbai-based UI/UX and technology agency helping startups and businesses achieve their strategic goals through impactful design and development. Bello, founded in 2019 in Montreal, focuses on sustainable water filtration and infusion systems aiming to reduce plastic bottle waste with innovative, long-lasting products.
+    </p>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+      <img id="slideshow-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80" alt="Slideshow Image" />
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=600&q=80" alt="Santorini Greece" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Mountain" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80" alt="Forest" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80" alt="Lake" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=600&q=80" alt="Desert" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach" />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Automatic slideshow for the top gallery image
+    const slideshowImages = [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80",
+      "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80"
+    ];
+    let currentIndex = 0;
+    const slideshowImg = document.getElementById('slideshow-img');
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slideshowImages.length;
+      slideshowImg.src = slideshowImages[currentIndex];
+    }, 3000); // Change image every 3 seconds
+  </script>
+  <!-- FOOTER SECTION -->
+    <footer style="background: black; padding: 60px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+
+            <!-- Quick Links -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">About us </a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Privicy Policy</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Rooms</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Support</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                    <li><a href="#">Our location</a></li>
+                    <li><a href="#">The hosta</a></li>
+                    <li><a href="#">about</a></li>
+                     <li><a href="#">contect</a></li>
+                    <li><a href="#">ResurantS</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Contact Info</h3>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-map-marker-alt" style="color: #6ecfc7; margin-right: 8px;"></i> 123 Street Name, City, Country</p>
+                <p style="margin: 0 0 10px 0;"><i class="fas fa-phone" style="color: #6ecfc7; margin-right: 8px;"></i> +123-456-7890</p>
+                <p style="margin: 0;"><i class="fas fa-envelope" style="color: #6ecfc7; margin-right: 8px;"></i> info@example.com</p>
+            </div>
+
+            <!-- Subscribe -->
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px;">Subscribe</h3>
+                <p>Get the latest news and updates.</p>
+                <form style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" placeholder="Your Email" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required />
+                    <button type="submit" style="padding: 10px; background: #6ecfc7; color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; font-size: 0.9rem; color: #888;">
+            &copy; 2025 Hepta Hotel. All rights reserved.
+        </div>
+    </footer>
+
+    </section>
+</body>
+</html>
+
+</body>
+</html>
