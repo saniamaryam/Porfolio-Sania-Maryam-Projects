@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laundry Service</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #171a3c;
+    }
+    h1, h2, h3, .navbar .logo {
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 18px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+    .navbar .logo {
+      font-size: 2rem;
+      color: #3d5afe;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar .logo img {
+      height: 32px;
+      margin-right: 10px;
+    }
+    .navbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .navbar nav a {
+      color: #222;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+    .navbar nav a:hover,
+    .navbar nav a.active {
+      background: #e8edff;
+      color: #3d5afe;
+    }
+    .navbar .contact {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .navbar .phone {
+      color: #3d5afe;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .navbar .appointment-btn {
+      background: #3d5afe;
+      color: #fff;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .navbar .appointment-btn:hover {
+      background: #1a237e;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: url('laundry.jpg') center center / cover no-repeat;
+      color: #fff;
+      padding-left: 60px;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(33, 41, 59, 0.48);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 550px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+      color: #e3e3e3;
+    }
+    .hero .cta-btn {
+      background: #3d5afe;
+      color: #fff;
+      border: none;
+      padding: 15px 38px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(61,90,254,0.15);
+      transition: background 0.2s;
+    }
+    .hero .cta-btn:hover {
+      background: #1a237e;
+    }
+    /* Call Us Section */
+    .call-section {
+      width: 80%;
+      margin: 40px auto 60px auto;
+      background: #202a4e;
+      border-radius: 12px;
+      padding: 48px 32px 48px 48px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 24px rgba(32,42,78,0.08);
+    }
+    .call-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #fff;
+    }
+    .call-section p {
+      font-size: 1.18rem;
+      color: #d8e0f7;
+      margin-bottom: 24px;
+    }
+    .call-section .call-btn {
+      background: #6d8cff;
+      color: #fff;
+      border: none;
+      padding: 16px 38px;
+      border-radius: 28px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(61,90,254,0.15);
+      transition: background 0.2s;
+    }
+    .call-section .call-btn:hover {
+      background: #3d5afe;
+    }
+    /* Decorative bubbles */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.09);
+      z-index: 0;
+    }
+    .bubble1 { width: 70px; height: 70px; top: 24px; right: 80px; }
+    .bubble2 { width: 40px; height: 40px; top: 90px; left: 150px; }
+    .bubble3 { width: 32px; height: 32px; top: 50px; right: 220px; }
+    .bubble4 { width: 18px; height: 18px; top: 120px; left: 60px; }
+    /* Testimonial Section */
+    .testimonial-section {
+      width: 100%;
+      margin: 60px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      padding-bottom: 40px;
+    }
+    .testimonial-carousel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
+    .testimonial-avatars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .testimonial-avatars img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(61,90,254,0.15);
+      background: #e3e3e3;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .testimonial-avatars img.active {
+      width: 72px;
+      height: 72px;
+      border: 3px solid #6d8cff;
+      box-shadow: 0 4px 16px rgba(61,90,254,0.20);
+      z-index: 2;
+    }
+    .testimonial-text {
+      font-size: 1.15rem;
+      color: #222;
+      text-align: center;
+      margin-bottom: 18px;
+      min-height: 72px;
+    }
+    .testimonial-stars {
+      color: #ffb400;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+    .testimonial-author {
+      color: #6d8cff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .testimonial-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 18px;
+    }
+    .testimonial-controls button {
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      color: #6d8cff;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 0 10px;
+    }
+    .testimonial-controls button:hover {
+      color: #3d5afe;
+    }
+    /* How We Work Section */
+    .process-section {
+      padding: 70px 20px 60px 20px;
+      background: #fff;
+      text-align: center;
+    }
+    .process-label {
+      display: inline-block;
+      background: #f3f6ff;
+      color: #6d8cff;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 6px 22px;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+    .process-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #171a3c;
+      margin-bottom: 46px;
+      letter-spacing: 0.5px;
+    }
+    .process-steps {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .process-step {
+      background: none;
+      border-radius: 14px;
+      padding: 0 18px;
+      max-width: 320px;
+      flex: 1 1 280px;
+      text-align: left;
+    }
+    .process-icon {
+      margin-bottom: 24px;
+    }
+    .process-step h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #171a3c;
+      margin-bottom: 16px;
+    }
+    .process-step p {
+      color: #7b7e98;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    /* Cloth Service Section (Laundry & Ironing) */
+    .main-section {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      margin: 0 auto 40px auto;
+      max-width: 1100px;
+      flex-wrap: wrap;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(90,124,255,0.06);
+    }
+    .main-section .info {
+      background: #5a7cff;
+      color: #fff;
+      flex: 1 1 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 30px;
+      min-width: 280px;
+      border-radius: 18px 0 0 18px;
+    }
+    .main-section .info .icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .main-section .info h2 {
+      margin: 0 0 16px 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .main-section .info p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      text-align: center;
+      margin: 0;
+    }
+    .main-section .image-section {
+      flex: 1 1 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+      min-width: 280px;
+      border-radius: 0 18px 18px 0;
+    }
+    .main-section .image-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 16px rgba(90,124,255,0.08);
+    }
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .call-section { width: 95%; }
+    }
+    @media (max-width: 900px) {
+      .hero {
+        padding-left: 24px;
+        min-height: 60vh;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .process-steps,
+      .main-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+      .process-title {
+        font-size: 2rem;
+      }
+      .navbar {
+        padding: 14px 20px;
+      }
+      .navbar nav {
+        gap: 12px;
+      }
+      .main-section .info, .main-section .image-section {
+        border-radius: 18px;
+      }
+      .call-section {
+        padding: 32px 16px;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero {
+        min-height: 40vh;
+        padding-left: 12px;
+      }
+      .main-section .info, .main-section .image-section {
+        max-width: 100%;
+        padding: 0 10px;
+        text-align: center;
+        border-radius: 18px;
+      }
+      .main-section .info p {
+        text-align: center;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .navbar nav {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .call-section {
+        padding: 24px 4px;
+        align-items: center;
+      }
+    }
+    /* Achievement Section */
+    .achievement-section {
+      padding: 80px 20px;
+      text-align: center;
+      background-color: #ffffff;
+    }
+    .achievement-section .tag {
+      display: inline-block;
+      background-color: #e8ecff;
+      color: #647eff;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .achievement-section h2 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #071952;
+      margin-bottom: 60px;
+    }
+    .achievement-section .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .achievement-section .stat-box {
+      max-width: 250px;
+    }
+    .achievement-section .stat-number {
+      font-size: 40px;
+      font-weight: bold;
+      color: #647eff;
+    }
+    .achievement-section .stat-text {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #4a4a4a;
+    }
+    .achievement-section .wave {
+      background-color: #e8ecff;
+      height: 120px;
+      margin-top: 80px;
+      border-top-left-radius: 100px;
+      border-top-right-radius: 100px;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #647eff;
+      color: white;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .scroll-top:hover {
+      background-color: #5060d0;
+    }
+    .about-section {
+      padding: 60px 20px;
+      background-color: #fff;
+    }
+    .about-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    .about-image img {
+      max-width: 100%;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .about-content {
+      max-width: 500px;
+    }
+    .about-content h2 {
+      font-size: 36px;
+      color: #071952;
+      margin-bottom: 20px;
+    }
+    .about-content p {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .about-btn {
+      display: inline-block;
+      background-color: #647eff;
+      color: #fff;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .about-btn:hover {
+      background-color: #5060d0;
+    }
+    .ad-section {
+      background: #f5f7fa;
+      padding: 40px 0 60px 0;
+      display: flex;
+      justify-content: center;
+      width: 10px;
+       
+      
+    }
+    .ad-container {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(61,90,254,0.07);
+      padding: 20px 32px;
+      max-width: 600px;
+      width: 200%;
+      transition: box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .ad-container:hover {
+      box-shadow: 0 6px 100px rgba(61,90,254,0.15);
+    }
+    .ad-image {
+      width: 1500px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 69px;
+      background: #e3e3e3;
+      border: 2px solid #6d8cff;
+    }
+    .ad-content h3 {
+      font-size: 1.25rem;
+      color: #3d5afe;
+      margin: 0 0 10px 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .ad-content p {
+      color: #222;
+      font-size: 1rem;
+      margin: 0;
+    }
+    /* Footer CSS */
+    .site-footer {
+      background: #fff;
+      padding: 70px 0 0 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #222;
+      position: relative;
+      margin-top: 0;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 60px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+    .footer-col {
+      flex: 1 1 260px;
+      min-width: 220px;
+      margin-bottom: 30px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      display: inline-flex;
+      margin-right: 8px;
+    }
+    .footer-logo-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #647eff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .footer-about {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      background: #f3f6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .footer-social-icon:hover {
+      background: #647eff22;
+    }
+    .footer-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #071952;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-list li {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 1rem;
+    }
+    .footer-contact {
+      font-size: 1rem;
+      color: #888;
+    }
+    .footer-phone {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .footer-email, .footer-address {
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .footer-bottom {
+      position: relative;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .footer-wave-bg {
+      width: 100%;
+      height: 90px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: -2px;
+    }
+    .footer-wave-bg svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .footer-copyright {
+      font-size: 1rem;
+      color: #888;
+      padding-bottom: 16px;
+      background: #e8ecff;
+    }
+    @media (max-width: 900px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 10px;
+      }
+      .footer-col {
+        min-width: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .footer-logo {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="https://img.icons8.com/ios-filled/50/3d5afe/washing-machine.png" alt="Laundry Logo" />
+      Laundry
+    </div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="About.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="Blog.html">Blog</a>
+      <a href="Contect.html">Contact</a>
+    </nav>
+    <div class="contact">
+      <span class="phone">📞 (08) 728 256 266</span>
+      <button class="appointment-btn">Make an Appointment</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Quality Laundry Service In Your City</h1>
+      <p>We take care about cleenness of your cloth</p>
+      <button class="cta-btn">Explore Services</button>
+    </div>
+  </section>
+
+  <!-- How We Work Section -->
+  <section class="process-section">
+    <div class="process-label">Our Process</div>
+    <h2 class="process-title">This is how we work</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-icon">
+          <!-- T-shirt SVG -->
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="28" fill="#6D8CFF" />
+            <path d="M20 19L28 24L36 19M22 36V26M34 36V26M22 36H34M22 26L28 30L34 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3>We Collect Your Clothes</h3>
+        <p>The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">
+          <!-- Hand Wash SVG -->
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="28" fill="#6D8CFF" />
+            <path d="M22 28L28 22L34 28M28 22V38M24 34H32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3>Wash Your Clothes</h3>
+        <p>The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">
+          <!-- Box SVG -->
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="28" fill="#6D8CFF" />
+            <path d="M18 24L28 18L38 24M18 24V34L28 40L38 34V24M18 24L28 30L38 24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3>Get Delivery</h3>
+        <p>The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloth Laundry Section (now matches Ironing section) -->
+  <section class="main-section">
+    <div class="info">
+      <div class="icon">
+        <!-- Laundry Icon SVG -->
+        <svg width="48" height="48" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="4"/>
+          <circle cx="12" cy="14" r="5"/>
+          <circle cx="17" cy="7" r="1"/>
+        </svg>
+      </div>
+      <h2>Cloth Laundry</h2>
+      <p>
+        The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!!
+      </p>
+    </div>
+    <div class="image-section">
+      <img src="pro2.jpg" alt="Laundry Service" />
+    </div>
+  </section>
+
+  <!-- Cloth Ironing Section -->
+  <section class="main-section">
+    <div class="info">
+      <div class="icon">
+        <!-- Laundry basket icon SVG -->
+        <svg width="48" height="48" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <rect x="3" y="7" width="18" height="13" rx="2" />
+          <path d="M16 7V5a2 2 0 0 0-4 0v2" />
+        </svg>
+      </div>
+      <h2>Cloth Ironing</h2>
+      <p>
+        The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!!
+      </p>
+    </div>
+    <div class="image-section">
+      <img src="laundry2.jpg" alt="Cloth Ironing" />
+    </div>
+  </section>
+
+  <!-- Call Us Section (second last) -->
+  <section class="call-section">
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+    <div class="bubble bubble4"></div>
+    <h2>Call us for a service</h2>
+    <p>We deliver the goods to the most complicated places on earth</p>
+    <button class="call-btn">
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L10.09 11.91a16 16 0 0 0 6 6l2.02-2.02a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72a2 2 0 0 1 1.72 2V21z" />
+      </svg>
+      Learn More
+    </button>
+  </section>
+
+  <!-- Testimonial Section (last) -->
+  <section class="testimonial-section">
+    <div class="testimonial-carousel" id="testimonial-carousel">
+      <div class="testimonial-avatars">
+        <img src="user1.jpg" alt="User 1" id="avatar1" />
+        <img src="user2.jpg" alt="User 2" id="avatar2" class="active" />
+        <img src="user3.jpg" alt="User 3" id="avatar3" />
+      </div>
+      <div class="testimonial-text" id="testimonial-text">
+        The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!
+      </div>
+      <div class="testimonial-stars" id="testimonial-stars">★★★★★</div>
+      <div class="testimonial-author" id="testimonial-author">- Rupaya</div>
+      <div class="testimonial-controls">
+        <button id="prevTestimonial" aria-label="Previous testimonial">&lt;</button>
+        <button id="nextTestimonial" aria-label="Next testimonial">&gt;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievement Section -->
+  <section class="achievement-section">
+    <div class="tag">Fun Fact</div>
+    <h2>Company achievement</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-number">4000</div>
+        <div class="stat-text">The automated process starts as soon as your clothes go into the machine.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">300+</div>
+        <div class="stat-text">The automated process starts as soon as your clothes go into the machine.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">95%</div>
+        <div class="stat-text">The automated process starts as soon as your clothes go into the machine.</div>
+      </div>
+    </div>
+    <div class="wave"></div>
+  </section>
+
+  <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    ↑
+  </div>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="proj2(4).jpg" alt="About Company Image">
+      </div>
+      <div class="about-content">
+        <h2>About company</h2>
+        <p>The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!</p>
+        <p>The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!</p>
+        <a href="#" class="about-btn">About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad Section (Footer Ad) -->
+  <section class="ad-section">
+    <div class="ad-container">
+      <a href="https://your-ad-link.com" target="_blank" rel="noopener">
+        <img src="Hello.jpg" alt="Sponsored Ad" class="ad-image" />
+        <div class="ad-content">
+          <h3>Special Offer: 20% Off Laundry Services!</h3>
+          <p>Book today and get a special discount on your first order. Click to learn more!</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- Column 1: Logo and About -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="footer-logo-icon">
+            <!-- Washing machine SVG icon -->
+            <svg width="32" height="32" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="4"/>
+              <circle cx="12" cy="14" r="5"/>
+              <circle cx="17" cy="7" r="1"/>
+            </svg>
+          </span>
+          <span class="footer-logo-text">Laundry</span>
+        </div>
+        <p class="footer-about">
+          Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.
+        </p>
+        <div class="footer-social">
+          <a href="#" title="Twitter" class="footer-social-icon">
+            <!-- Twitter SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4 1.64a9.09 9.09 0 01-2.88 1.1A4.48 4.48 0 0016.11.36c-2.5 0-4.52 2.02-4.52 4.52 0 .35.04.69.11 1.02C7.69 5.7 4.07 3.86 1.64 1.16c-.38.65-.6 1.4-.6 2.2 0 1.52.77 2.86 1.95 3.65A4.48 4.48 0 01.96 6.1v.06c0 2.13 1.52 3.91 3.53 4.31-.37.1-.76.15-1.16.15-.28 0-.55-.03-.82-.08.55 1.7 2.16 2.94 4.07 2.97A8.98 8.98 0 012 19.54a12.72 12.72 0 006.88 2.02c8.25 0 12.77-6.83 12.77-12.77 0-.2 0-.41-.01-.61A9.1 9.1 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" title="Facebook" class="footer-social-icon">
+            <!-- Facebook SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" title="Pinterest" class="footer-social-icon">
+            <!-- Pinterest SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8.5 16c.5-2 1-4 1-6 0-1.5 1-2.5 2.5-2.5S15 8.5 15 10c0 1.5-1 2.5-2.5 2.5-.5 0-1-.5-1-1"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!-- Column 2: Services -->
+      <div class="footer-col">
+        <h3 class="footer-title">Services</h3>
+        <ul class="footer-list">
+          <li>- Dry Cleaning</li>
+          <li>- Dry Clean</li>
+          <li>- Ironing Services</li>
+          <li>- Laundry Service London</li>
+          <li>- Laundry App</li>
+        </ul>
+      </div>
+      <!-- Column 3: Contact -->
+      <div class="footer-col">
+        <h3 class="footer-title">Get in touch</h3>
+        <div class="footer-contact">
+          <div class="footer-phone"><a href="tel:908987898957" style="color:#647eff; text-decoration:none;">(90) 898 789-8957</a></div>
+          <div class="footer-email">laundry@567.com</div>
+          <div class="footer-address">789/A, Green road NYC-9089</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-wave-bg">
+        <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 90C144 90 288 45 432 45C576 45 720 90 864 90C1008 90 1152 45 1296 45C1440 45 1440 90 1440 90H0Z" fill="#e8ecff"/>
+        </svg>
+      </div>
+      <div class="footer-copyright">
+        Copyright ©2025 All rights reserved | This template is made with 
+        <span style="color:#647eff; font-size:1.2em;">&#10084;</span> by 
+        <a href="https://colorlib.com" style="color:#647eff;" target="_blank">Colorlib</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Testimonial Carousel Functionality
+    const testimonials = [
+      {
+        text: "The automated process starts as soon as your clothes go into the machine. The outcome is gleaming clothes!",
+        author: "Rupaya",
+        stars: 5,
+        avatars: ["user1.jpg", "user2.jpg", "user3.jpg"],
+      },
+      {
+        text: "Amazing laundry service! My clothes have never looked better.",
+        author: "Ayesha",
+        stars: 5,
+        avatars: ["user2.jpg", "user3.jpg", "user1.jpg"],
+      },
+      {
+        text: "Fast delivery and friendly staff. Highly recommended.",
+        author: "Ali",
+        stars: 4,
+        avatars: ["user3.jpg", "user1.jpg", "user2.jpg"],
+      },
+    ];
+    let currentTestimonial = 0;
+    function updateTestimonial() {
+      const t = testimonials[currentTestimonial];
+      document.getElementById("testimonial-text").textContent = t.text;
+      document.getElementById("testimonial-author").textContent = "- " + t.author;
+      document.getElementById("testimonial-stars").textContent = "★★★★★".slice(0, t.stars);
+      // Update avatars
+      document.getElementById("avatar1").src = t.avatars[0];
+      document.getElementById("avatar2").src = t.avatars[1];
+      document.getElementById("avatar3").src = t.avatars[2];
+      document.getElementById("avatar1").classList.remove("active");
+      document.getElementById("avatar2").classList.remove("active");
+      document.getElementById("avatar3").classList.remove("active");
+      // The "active" avatar is always the middle one
+      document.getElementById("avatar2").classList.add("active");
+    }
+    document.getElementById("prevTestimonial").onclick = function () {
+      currentTestimonial = (currentTestimonial + testimonials.length - 1) % testimonials.length;
+      updateTestimonial();
+    };
+    document.getElementById("nextTestimonial").onclick = function () {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    };
+    // Initialize
+    updateTestimonial();
+  </script>
+</body>
+</html>

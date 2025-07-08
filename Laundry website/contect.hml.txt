@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laundry Service</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #171a3c;
+    }
+    h1, h2, h3, .navbar .logo {
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Error Section */
+    .error-container {
+      width: 80vw;
+      max-width: 950px;
+      height: 400px; /* Adjust height as needed */
+      margin: 40px auto;
+      border-radius: 8px;
+      background-image: url('pic.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    /* Contact Section */
+    .contact-section {
+      background: #fff;
+      padding: 60px 0 40px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 30px;
+    }
+    .contact-form-area {
+      flex: 2 1 500px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .contact-form-area h2 {
+      font-size: 2rem;
+      color: #071952;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+      border: 1px solid #f0f0f0;
+      border-radius: 4px;
+      padding: 18px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fafbff;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .contact-form textarea:focus,
+    .contact-form input:focus {
+      border: 1.5px solid #647eff;
+    }
+    .contact-form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-form input {
+      flex: 1 1 180px;
+      padding: 16px 14px;
+      border: 1px solid #f0f0f0;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #fafbff;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .contact-form input:focus {
+      border: 1.5px solid #647eff;
+    }
+    .contact-form .subject-input {
+      width: 100%;
+    }
+    .contact-form .send-btn {
+      width: 120px;
+      padding: 12px 0;
+      border: 1.5px solid #aeb8fe;
+      border-radius: 4px;
+      background: transparent;
+      color: #647eff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 10px;
+    }
+    .contact-form .send-btn:hover {
+      background: #647eff;
+      color: #fff;
+    }
+    /* Contact Info */
+    .contact-info {
+      flex: 1 1 300px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0 0 0 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      min-width: 270px;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-info-icon {
+      font-size: 2rem;
+      color: #647eff;
+      margin-top: 2px;
+      min-width: 32px;
+    }
+    .contact-info-text {
+      color: #222;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    .contact-info-text strong {
+      display: block;
+      color: #071952;
+      font-weight: 700;
+      margin-bottom: 2px;
+      font-size: 1.08rem;
+    }
+    .contact-info-text span {
+      color: #888;
+      font-size: 0.97rem;
+      display: block;
+      margin-top: 2px;
+    }
+    @media (max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 10px;
+      }
+      .contact-info {
+        padding: 0;
+      }
+    }
+
+    /* Navbar and rest of your existing CSS (unchanged) */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 18px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+    .navbar .logo {
+      font-size: 2rem;
+      color: #3d5afe;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar .logo img {
+      height: 32px;
+      margin-right: 10px;
+    }
+    .navbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .navbar nav a {
+      color: #222;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+    .navbar nav a:hover,
+    .navbar nav a.active {
+      background: #e8edff;
+      color: #3d5afe;
+    }
+    .navbar .contact {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .navbar .phone {
+      color: #3d5afe;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .navbar .appointment-btn {
+      background: #3d5afe;
+      color: #fff;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .navbar .appointment-btn:hover {
+      background: #1a237e;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100vw;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: url('Laundrypic2.jpg') center center / cover no-repeat;
+      color: #fff;
+      padding-left: 60px;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(33, 41, 59, 0.48);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 550px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+      color: #e3e3e3;
+    }
+    .hero .cta-btn {
+      background: #3d5afe;
+      color: #fff;
+      border: none;
+      padding: 15px 38px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(61,90,254,0.15);
+      transition: background 0.2s;
+    }
+    .hero .cta-btn:hover {
+      background: #1a237e;
+    }
+    /* Footer CSS (unchanged, keep your previous code) */
+    .site-footer {
+      background: #fff;
+      padding: 70px 0 0 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #222;
+      position: relative;
+      margin-top: 0;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 60px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+    .footer-col {
+      flex: 1 1 260px;
+      min-width: 220px;
+      margin-bottom: 30px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      display: inline-flex;
+      margin-right: 8px;
+    }
+    .footer-logo-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #647eff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .footer-about {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      background: #f3f6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .footer-social-icon:hover {
+      background: #647eff22;
+    }
+    .footer-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #071952;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-list li {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 1rem;
+    }
+    .footer-contact {
+      font-size: 1rem;
+      color: #888;
+    }
+    .footer-phone {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .footer-email, .footer-address {
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .footer-bottom {
+      position: relative;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .footer-wave-bg {
+      width: 100%;
+      height: 90px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: -2px;
+    }
+    .footer-wave-bg svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .footer-copyright {
+      font-size: 1rem;
+      color: #888;
+      padding-bottom: 16px;
+      background: #e8ecff;
+    }
+    @media (max-width: 900px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 10px;
+      }
+      .footer-col {
+        min-width: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .footer-logo {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="https://img.icons8.com/ios-filled/50/3d5afe/washing-machine.png" alt="Laundry Logo" />
+      Laundry
+    </div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="About.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="Blog.html">Blog</a>
+      <a href="Contect.html">Contact</a>
+    </nav>
+    <div class="contact">
+      <span class="phone">📞 (08) 728 256 266</span>
+      <button class="appointment-btn">Make an Appointment</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Quality Laundry Service In Your City</h1>
+      <p>We take care about cleenness of your cloth</p>
+      <button class="cta-btn">Explore Services</button>
+    </div>
+  </section>
+
+  <!-- Error Section (added just before contact section) -->
+  <section class="error-container"></section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <!-- Contact Form Area -->
+      <div class="contact-form-area">
+        <h2>Get in Touch</h2>
+        <form class="contact-form" autocomplete="off">
+          <textarea placeholder="Enter Message"></textarea>
+          <div class="contact-form-row">
+            <input type="text" placeholder="Enter your name" required />
+            <input type="email" placeholder="Email" required />
+          </div>
+          <input type="text" class="subject-input" placeholder="Enter Subject" required />
+          <button type="submit" class="send-btn">SEND</button>
+        </form>
+      </div>
+      <!-- Contact Info Area -->
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <span class="contact-info-icon">
+            <!-- Home Icon SVG -->
+            <svg width="32" height="32" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-4 0h4" />
+            </svg>
+          </span>
+          <div class="contact-info-text">
+            <strong>Buttonwood, California.</strong>
+            <span>Rosemead, CA 91770</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">
+            <!-- Phone Icon SVG -->
+            <svg width="32" height="32" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 16.92V21a1 1 0 01-1.09 1A19.91 19.91 0 013 5.09 1 1 0 014 4h4.09a1 1 0 011 .75l1.13 4.52a1 1 0 01-.29 1l-2.2 2.2a16 16 0 006.58 6.58l2.2-2.2a1 1 0 011-.29l4.52 1.13a1 1 0 01.75 1V21z"/>
+            </svg>
+          </span>
+          <div class="contact-info-text">
+            <strong>+1 253 565 2365</strong>
+            <span>Mon to Fri 9am to 6pm</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">
+            <!-- Mail Icon SVG -->
+            <svg width="32" height="32" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M22 6l-10 7L2 6"/>
+            </svg>
+          </span>
+          <div class="contact-info-text">
+            <strong>support@colorlib.com</strong>
+            <span>Send us your query anytime!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- Column 1: Logo and About -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="footer-logo-icon">
+            <!-- Washing machine SVG icon -->
+            <svg width="32" height="32" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="4"/>
+              <circle cx="12" cy="14" r="5"/>
+              <circle cx="17" cy="7" r="1"/>
+            </svg>
+          </span>
+          <span class="footer-logo-text">Laundry</span>
+        </div>
+        <p class="footer-about">
+          Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.
+        </p>
+        <div class="footer-social">
+          <a href="#" title="Twitter" class="footer-social-icon">
+            <!-- Twitter SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4 1.64a9.09 9.09 0 01-2.88 1.1A4.48 4.48 0 0016.11.36c-2.5 0-4.52 2.02-4.52 4.52 0 .35.04.69.11 1.02C7.69 5.7 4.07 3.86 1.64 1.16c-.38.65-.6 1.4-.6 2.2 0 1.52.77 2.86 1.95 3.65A4.48 4.48 0 01.96 6.1v.06c0 2.13 1.52 3.91 3.53 4.31-.37.1-.76.15-1.16.15-.28 0-.55-.03-.82-.08.55 1.7 2.16 2.94 4.07 2.97A8.98 8.98 0 012 19.54a12.72 12.72 0 006.88 2.02c8.25 0 12.77-6.83 12.77-12.77 0-.2 0-.41-.01-.61A9.1 9.1 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" title="Facebook" class="footer-social-icon">
+            <!-- Facebook SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" title="Pinterest" class="footer-social-icon">
+            <!-- Pinterest SVG -->
+            <svg width="22" height="22" fill="none" stroke="#647eff" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8.5 16c.5-2 1-4 1-6 0-1.5 1-2.5 2.5-2.5S15 8.5 15 10c0 1.5-1 2.5-2.5 2.5-.5 0-1-.5-1-1"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!-- Column 2: Services -->
+      <div class="footer-col">
+        <h3 class="footer-title">Services</h3>
+        <ul class="footer-list">
+          <li>- Dry Cleaning</li>
+          <li>- Dry Clean</li>
+          <li>- Ironing Services</li>
+          <li>- Laundry Service London</li>
+          <li>- Laundry App</li>
+        </ul>
+      </div>
+      <!-- Column 3: Contact -->
+      <div class="footer-col">
+        <h3 class="footer-title">Get in touch</h3>
+        <div class="footer-contact">
+          <div class="footer-phone"><a href="tel:908987898957" style="color:#647eff; text-decoration:none;">(90) 898 789-8957</a></div>
+          <div class="footer-email">laundry@567.com</div>
+          <div class="footer-address">789/A, Green road NYC-9089</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-wave-bg">
+        <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 90C144 90 288 45 432 45C576 45 720 90 864 90C1008 90 1152 45 1296 45C1440 45 1440 90 1440 90H0Z" fill="#e8ecff"/>
+        </svg>
+      </div>
+      <div class="footer-copyright">
+        Copyright ©2025 All rights reserved | This template is made with 
+        <span style="color:#647eff; font-size:1.2em;">&#10084;</span> by 
+        <a href="https://colorlib.com" style="color:#647eff;" target="_blank">Colorlib</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
